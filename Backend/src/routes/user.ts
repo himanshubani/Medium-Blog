@@ -32,7 +32,7 @@ userRouter.post("/signup", async (c) => {
       },
     });
     const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
-    return c.json({ jwt });
+    return c.text(jwt)
   } catch (e) {
     c.status(411);
     return c.text("Invalid");
@@ -63,7 +63,7 @@ userRouter.post("/signin", async (c) => {
     }
 
     const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
-    return c.json({ jwt });
+    return c.text(jwt)
   } catch (e) {
     c.status(411);
     return c.text("Invalid");
